@@ -5,11 +5,11 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: %mkrel 2
+Release: %mkrel 3
 Source0: ftp://ftp.avm.de/cardware/fritzcrd.pci/linux/suse.93/fcpci-suse93-3.11-07.tar.bz2
 Patch0: fritz-xchg.patch
 License: Commercial
-Group: System/Kernel
+Group: System/Kernel and hardware
 URL: http://www.avm.de/
 PreReq: dkms
 BuildRoot: %{_tmppath}/%{name}-buildroot
