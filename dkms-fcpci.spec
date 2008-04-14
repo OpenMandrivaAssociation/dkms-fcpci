@@ -5,7 +5,7 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: %mkrel 6
+Release: %mkrel 7
 Source0: ftp://ftp.avm.de/cardware/fritzcrd.pci/linux/suse.93/fcpci-suse93-3.11-07.tar.bz2
 Source1: dkms-fcpci-use-autoconf-header.patch
 Source2: dkms-fcpci-use-pci_register_driver.patch
@@ -13,6 +13,7 @@ Source3: dkms-fcpci-update-irq-flags.patch
 Source4: dkms-fcpci-update-irq_handler-definition.patch
 Patch0: fritz-xchg.patch
 Patch1: fritz-rename-driver-init-exit.patch
+Patch2: fritz-use-lib_strncpy.patch
 License: Commercial
 Group: System/Kernel and hardware
 URL: http://www.avm.de/
@@ -28,6 +29,7 @@ This package contains the %{module} driver for %{card}
 %setup -n fritz/src -q
 %patch0 -p2
 %patch1 -p2
+%patch2 -p2
 # copy the lib in the source tree, do not use some obscure place like /var/lib/fritz
 cp ../lib/*.o .
 # do not try to copy the lib in LIBDIR
