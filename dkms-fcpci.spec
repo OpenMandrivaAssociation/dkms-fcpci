@@ -5,12 +5,15 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: %mkrel 7
+Release: %mkrel 8
 Source0: ftp://ftp.avm.de/cardware/fritzcrd.pci/linux/suse.93/fcpci-suse93-3.11-07.tar.bz2
 Source1: dkms-fcpci-use-autoconf-header.patch
 Source2: dkms-fcpci-use-pci_register_driver.patch
 Source3: dkms-fcpci-update-irq-flags.patch
 Source4: dkms-fcpci-update-irq_handler-definition.patch
+Source5: dkms-fcpci-2.6.31-buildfix.patch
+Source6: dkms-fcpci-2.6.33-buildfix.patch
+Source7: dkms-fcpci-2.6.34-buildfix.patch
 Patch0: fritz-xchg.patch
 Patch1: fritz-rename-driver-init-exit.patch
 Patch2: fritz-use-lib_strncpy.patch
@@ -61,6 +64,12 @@ PATCH[2]="dkms-fcpci-update-irq-flags.patch"
 PATCH_MATCH[2]="^2\.6\.(2[4-9])|([3-9][0-9]+)|([1-9][0-9][0-9]+)"
 PATCH[3]="dkms-fcpci-update-irq_handler-definition.patch"
 PATCH_MATCH[3]="^2\.6\.(19)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
+PATCH[4]="dkms-fcpci-2.6.31-buildfix.patch"
+PATCH_MATCH[4]="^2\.6\.(31)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
+PATCH[5]="dkms-fcpci-2.6.33-buildfix.patch"
+PATCH_MATCH[5]="^2\.6\.(33)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
+PATCH[6]="dkms-fcpci-2.6.34-buildfix.patch"
+PATCH_MATCH[6]="^2\.6\.(34)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
 EOF
 
 tar c . | tar x -C $RPM_BUILD_ROOT/usr/src/%module-%version-%release/
@@ -68,7 +77,10 @@ tar c . | tar x -C $RPM_BUILD_ROOT/usr/src/%module-%version-%release/
 for p in %{_sourcedir}/dkms-fcpci-use-autoconf-header.patch \
          %{_sourcedir}/dkms-fcpci-use-pci_register_driver.patch \
          %{_sourcedir}/dkms-fcpci-update-irq-flags.patch \
-         %{_sourcedir}/dkms-fcpci-update-irq_handler-definition.patch;
+         %{_sourcedir}/dkms-fcpci-update-irq_handler-definition.patch \
+         %{_sourcedir}/dkms-fcpci-2.6.31-buildfix.patch \
+         %{_sourcedir}/dkms-fcpci-2.6.33-buildfix.patch \
+         %{_sourcedir}/dkms-fcpci-2.6.34-buildfix.patch ;
 do
 	cp $p $RPM_BUILD_ROOT/usr/src/%module-%version-%release/patches
 done
