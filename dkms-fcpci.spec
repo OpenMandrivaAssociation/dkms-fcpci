@@ -5,7 +5,7 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: %mkrel 8
+Release: %mkrel 9
 Source0: ftp://ftp.avm.de/cardware/fritzcrd.pci/linux/suse.93/fcpci-suse93-3.11-07.tar.bz2
 Source1: dkms-fcpci-use-autoconf-header.patch
 Source2: dkms-fcpci-use-pci_register_driver.patch
@@ -65,11 +65,11 @@ PATCH_MATCH[2]="^2\.6\.(2[4-9])|([3-9][0-9]+)|([1-9][0-9][0-9]+)"
 PATCH[3]="dkms-fcpci-update-irq_handler-definition.patch"
 PATCH_MATCH[3]="^2\.6\.(19)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
 PATCH[4]="dkms-fcpci-2.6.31-buildfix.patch"
-PATCH_MATCH[4]="^2\.6\.(31)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
+PATCH_MATCH[4]="^2\.6\.(3[1-9])|([4-9][0-9]+)|([1-9][0-9][0-9]+)"
 PATCH[5]="dkms-fcpci-2.6.33-buildfix.patch"
-PATCH_MATCH[5]="^2\.6\.(33)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
+PATCH_MATCH[5]="^2\.6\.(3[3-9])|([4-9][0-9]+)|([1-9][0-9][0-9]+)"
 PATCH[6]="dkms-fcpci-2.6.34-buildfix.patch"
-PATCH_MATCH[6]="^2\.6\.(34)|([2-9][0-9]+)|([1-9][0-9][0-9]+)"
+PATCH_MATCH[6]="^2\.6\.(3[4-9])|([4-9][0-9]+)|([1-9][0-9][0-9]+)"
 EOF
 
 tar c . | tar x -C $RPM_BUILD_ROOT/usr/src/%module-%version-%release/
