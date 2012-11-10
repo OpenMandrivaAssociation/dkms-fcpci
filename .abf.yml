@@ -1,0 +1,9 @@
+sources:
+  "dkms-fcpci-2.6.31-buildfix.patch:"	09fa25d00c166958cbd02fad346809d47ebc9c04
+  "dkms-fcpci-2.6.33-buildfix.patch:"	18ef3d658ad7797070821f2d768c5c01de1ea8be
+  "dkms-fcpci-2.6.34-buildfix.patch:"	48a3756deafd221b6cb7767cb60cd2e5440551a5
+  "dkms-fcpci-update-irq-flags.patch:"	eb725136df5a82a9450e1c0b3a660dfde0d487c5
+  "dkms-fcpci-update-irq_handler-definition.patch:"	e8646309fbc807a4ecdf3aa52c1e1e1247971fa7
+  "dkms-fcpci-use-autoconf-header.patch:"	70cbae2ce1f9ed7ff3e390f3e8ad936f1afb0e5c
+  "dkms-fcpci-use-pci_register_driver.patch:"	b2aafa3b1438b21224a584326e9c74fe0370382c
+  "fcpci-suse93-3.11-07.tar.bz2:"	2ebab604ffb2af077962193053c80d717a54047d

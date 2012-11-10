@@ -1,0 +1,17 @@
+Fix typo reported by Juergen Pfennig, accorgindly to him fcpci has a
+little typo that prevents it from working (capidrv complains about
+"Not from AVM" on kernel 2.6.24), lib_strncpy should be used instead
+of strncpy.
+
+diff -p -up fritz/src/driver.c.orig fritz/src/driver.c
+--- fritz/src/driver.c.orig	2008-04-07 08:30:36.000000000 -0300
++++ fritz/src/driver.c	2008-04-07 08:32:00.000000000 -0300
+@@ -194,7 +194,7 @@ static void copy_version (struct capi_ct
+ 	}
+ 	lib_strncpy (ctrl->serial, tmp, CAPI_SERIAL_LEN);
+ 	lib_memcpy (&ctrl->profile, card->string[6], sizeof (capi_profile));
+-	strncpy (ctrl->manu, "AVM GmbH", CAPI_MANUFACTURER_LEN);
++	lib_strncpy (ctrl->manu, "AVM GmbH", CAPI_MANUFACTURER_LEN);
+ 	ctrl->version.majorversion = 2;
+ 	ctrl->version.minorversion = 0;
+ 	tmp = card->string[0];

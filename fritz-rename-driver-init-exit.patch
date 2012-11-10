@@ -1,0 +1,94 @@
+Rename driver_init to fcpci_driver_init, as it clashes with driver_init
+defined in <linux/driver.h> header since 2.6.20. While at it renamed
+driver_exit to fcpci_driver_exit, not really needed but did it as a
+cosmetic thing and to avoid the same problem in the future like the
+driver_init case.
+
+Signed-off-by: Herton Ronaldo Krzesinski <herton@mandriva.com>
+
+--- fritz/src.orig/driver.c	2008-01-09 17:34:38.000000000 -0200
++++ fritz/src/driver.c	2008-01-09 17:42:39.000000000 -0200
+@@ -901,19 +901,19 @@ int fcpcmcia_delcard (unsigned int port,
+ 
+ /*---------------------------------------------------------------------------*\
+ \*---------------------------------------------------------------------------*/
+-int driver_init (void) {
++int fcpci_driver_init (void) {
+ 
+ 	return (NULL != (capi_lib = link_library (NULL)));
+-} /* driver_init */
++} /* fcpci_driver_init */
+ 
+ /*---------------------------------------------------------------------------*\
+ \*---------------------------------------------------------------------------*/
+-void driver_exit (void) {
++void fcpci_driver_exit (void) {
+ 
+ 	assert (capi_lib != NULL);
+ 	free_library ();
+ 	capi_lib = NULL;
+-} /* driver_exit */
++} /* fcpci_driver_exit */
+ 
+ /*---------------------------------------------------------------------------*\
+ \*---------------------------------------------------------------------------*/
+--- fritz/src.orig/driver.h	2008-01-09 17:36:46.000000000 -0200
++++ fritz/src/driver.h	2008-01-09 17:42:52.000000000 -0200
+@@ -98,8 +98,8 @@ extern int fcpcmcia_delcard (unsigned, u
+ 
+ /*---------------------------------------------------------------------------*\
+ \*---------------------------------------------------------------------------*/
+-extern int driver_init (void);
+-extern void driver_exit (void);
++extern int fcpci_driver_init (void);
++extern void fcpci_driver_exit (void);
+ 
+ /*---------------------------------------------------------------------------*\
+ \*---------------------------------------------------------------------------*/
+--- fritz/src.orig/main.c	2008-01-09 17:36:55.000000000 -0200
++++ fritz/src/main.c	2008-01-09 17:43:13.000000000 -0200
+@@ -205,7 +205,7 @@ static int __devinit fritz_probe (
+ 	NOTE(PRODUCT_LOGO " found: port 0x%04x, irq %u\n", pars.port, pars.irq);
+ 
+ 	NOTE("Loading...\n");
+-	if (!driver_init ()) {
++	if (!fcpci_driver_init ()) {
+ 		ERROR("Error: Driver library not available.\n");
+ 		ERROR("Not loaded.\n");
+ 		return res;
+@@ -238,7 +238,7 @@ static void __devexit fritz_remove (stru
+ 	remove_ctrl (&card->ctrl);
+ 	NOTE("Removed.\n");
+ 	libheap_exit ();
+-	driver_exit ();
++	fcpci_driver_exit ();
+ #ifndef NDEBUG
+ 	if (hallocated() != 0) {
+ 		ERROR("%u bytes leaked.\n", hallocated());
+@@ -270,7 +270,7 @@ static int __devinit fritz_probe (
+ 	NOTE (PRODUCT_LOGO " found: port 0x%04x, irq %u\n", pars.port, pars.irq);
+ 
+ 	NOTE("Loading...\n");
+-	if (!driver_init ()) {
++	if (!fcpci_driver_init ()) {
+ 		ERROR("Error: Driver library not available.\n");
+ 		ERROR("Not loaded.\n");
+ 		return -EBUSY;
+@@ -303,7 +303,7 @@ static void __devexit fritz_remove (stru
+ 	remove_ctrl (&card->ctrl);
+ 	NOTE("Removed.\n");
+ 	libheap_exit ();
+-	driver_exit ();
++	fcpci_driver_exit ();
+ #ifndef NDEBUG
+ 	if (hallocated() != 0) {
+ 		ERROR("%u bytes leaked.\n", hallocated());
+@@ -378,7 +378,7 @@ static int __init fritz_init (void) {
+ 	}
+ 	return err;
+ #elif defined (__fcpcmcia__) || defined (__fcclassic__)
+-	if (!driver_init ()) {
++	if (!fcpci_driver_init ()) {
+ 		ERROR("Error: Driver library not available.\n");
+ 		ERROR("Not loaded.\n");
+ 		return -EBUSY;
