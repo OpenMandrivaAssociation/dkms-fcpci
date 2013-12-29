@@ -5,7 +5,7 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: 10
+Release: 11
 Source0: ftp://ftp.avm.de/cardware/fritzcrd.pci/linux/suse.93/fcpci-suse93-3.11-07.tar.bz2
 Source1: dkms-fcpci-use-autoconf-header.patch
 Source2: dkms-fcpci-use-pci_register_driver.patch
