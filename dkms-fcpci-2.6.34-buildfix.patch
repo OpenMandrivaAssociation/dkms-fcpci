@@ -1,0 +1,17 @@
+
+ctr_read_proc got replaced with proc_fops in 2.6.34
+
+Signed-off-by: Thomas Backlund <tmb@mandriva.org>
+
+diff -Nurp 3.11.07-7.1mdv2010.1.orig/build/driver.c 3.11.07-7.1mdv2010.1/build/driver.c
+--- 3.11.07-7.1mdv2010.1.orig/driver.c	2010-11-08 23:26:15.000000000 +0200
++++ 3.11.07-7.1mdv2010.1/driver.c	2010-11-08 23:37:10.759940081 +0200
+@@ -626,7 +626,7 @@ int __kcapi add_card (struct capi_driver
+ 	ctrl->release_appl =	release_appl;
+ 	ctrl->send_message =	send_msg;
+ 	ctrl->procinfo =	proc_info;
+-	ctrl->ctr_read_proc =	ctr_info;
++	ctrl->proc_fops =	ctr_info;
+ 	if (0 != (res = attach_capi_ctr (ctrl))) {
+ 		dec_use_count ();
+ 		stop (card);

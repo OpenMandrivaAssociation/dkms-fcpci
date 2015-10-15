@@ -1,0 +1,21 @@
+Update used irq-flags definitions.
+
+See commits 6e21361619328751e2637b004e14cf360aafbddc and
+b4471cbb09c4694e54092d02715c09fda2eb45ed on Linus tree.
+
+Signed-off-by: Herton Ronaldo Krzesinski <herton@mandriva.com>
+
+--- fcpci-3.11.07.orig/driver.c	2008-01-09 17:42:39.000000000 -0200
++++ fcpci-3.11.07/driver.c	2008-01-09 17:50:49.000000000 -0200
+@@ -374,9 +374,9 @@ static int install_card (card_t * card) 
+ 			card->irq, 
+ 			&irq_handler, 
+ #if defined (__fcpci__) || defined (__fcpcmcia__)
+-			SA_INTERRUPT | SA_SHIRQ, 
++			IRQF_DISABLED | IRQF_SHARED, 
+ #else
+-			SA_INTERRUPT, 
++			IRQF_DISABLED, 
+ #endif
+ 			TARGET, 
+ 			card

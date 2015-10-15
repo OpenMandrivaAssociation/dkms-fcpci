@@ -1,0 +1,18 @@
+pci_module_init was replaced by pci_register_driver, update the code
+accordingly.
+
+See commit ecf36501bc4ad399e6df2e0bdaa513a2d510b7ec from Linus tree.
+
+Signed-off-by: Herton Ronaldo Krzesinski <herton@mandriva.com>
+
+--- fcpci-3.11.07.orig/main.c	2008-01-09 17:43:13.000000000 -0200
++++ fcpci-3.11.07/main.c	2008-01-09 17:48:17.000000000 -0200
+@@ -364,7 +364,7 @@ static int __init fritz_init (void) {
+ #endif
+ 
+ #if defined (__fcpci__)	
+-	if (0 == (err = pci_module_init (&fcpci_driver))) {
++	if (0 == (err = pci_register_driver (&fcpci_driver))) {
+ 		LOG("PCI driver registered.\n");
+ 		register_capi_driver (&fritz_capi_driver);
+ 		LOG("CAPI driver registered.\n");

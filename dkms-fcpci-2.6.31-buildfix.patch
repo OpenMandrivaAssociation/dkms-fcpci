@@ -1,0 +1,21 @@
+
+Buildfix for 2.6.31 series kernel.
+
+capi_ctr_reseted got renamed to capi_ctr_down.
+
+from: https://qa.mandriva.com/show_bug.cgi?id=55409
+
+Signed-off-by: Thomas Backlund <tmb@mandriva.org>
+
+diff -u fcpci-3.11.07-7mdv2009.0.orig/driver.c fcpci-3.11.07-7mdv2009.0/driver.c
+--- fcpci-3.11.07-7mdv2009.0.orig/driver.c	2009-11-08 11:33:23.000000000 +0100
++++ fcpci-3.11.07-7mdv2009.0/driver.c	2009-11-08 11:34:20.000000000 +0100
+@@ -569,7 +569,7 @@
+ 		}
+ 	}
+ 	stop (card);
+-	capi_ctr_reseted (ctrl);
++	capi_ctr_down (ctrl);
+ #if defined (__fcpnp__)
+ 	pnp_disable_dev (card->dev);
+ #endif

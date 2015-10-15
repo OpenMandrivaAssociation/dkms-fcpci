@@ -1,0 +1,29 @@
+
+autoconf.h moved from linux/ to generated/ in 2.6.33
+
+Signed-off-by: Thomas Backlund <tmb@mandriva.org>
+
+diff -Nurp fcpci-3.11.07-7.1mdv2010.1.orig/driver.h fcpci-3.11.07-7.1mdv2010.1/driver.h
+--- fcpci-3.11.07-7.1mdv2010.1.orig/driver.h	2010-11-08 23:19:58.000000000 +0200
++++ fcpci-3.11.07-7.1mdv2010.1/driver.h	2010-11-08 23:20:46.953678145 +0200
+@@ -23,7 +23,7 @@
+ #ifndef __have_driver_h__
+ #define __have_driver_h__
+ 
+-#include <linux/autoconf.h>
++#include <generated/autoconf.h>
+ #include <linux/skbuff.h>
+ #include <linux/capi.h>
+ #include <linux/list.h>
+diff -Nurp fcpci-3.11.07-7.1mdv2010.1.orig/main.c fcpci-3.11.07-7.1mdv2010.1/main.c
+--- fcpci-3.11.07-7.1mdv2010.1.orig/main.c	2010-11-08 23:19:58.000000000 +0200
++++ fcpci-3.11.07-7.1mdv2010.1/main.c	2010-11-08 23:20:31.499899789 +0200
+@@ -22,7 +22,7 @@
+ 
+ #include <stdarg.h>
+ #include <asm/uaccess.h>
+-#include <linux/autoconf.h>
++#include <generated/autoconf.h>
+ #include <linux/version.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>

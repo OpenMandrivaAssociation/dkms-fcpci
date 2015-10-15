@@ -1,0 +1,28 @@
+Use autoconf.h instead of config.h
+
+See commit b0ac3f50b8f2cd992ffd36d22c82eabdf075e9c4 from Linus tree.
+
+Signed-off-by: Herton Ronaldo Krzesinski <herton@mandriva.com>
+
+--- fcpci-3.11.07.orig/driver.h	2008-01-09 17:34:38.000000000 -0200
++++ fcpci-3.11.07/driver.h	2008-01-09 17:36:46.000000000 -0200
+@@ -23,7 +23,7 @@
+ #ifndef __have_driver_h__
+ #define __have_driver_h__
+ 
+-#include <linux/config.h>
++#include <linux/autoconf.h>
+ #include <linux/skbuff.h>
+ #include <linux/capi.h>
+ #include <linux/list.h>
+--- fcpci-3.11.07.orig/main.c	2008-01-09 17:34:38.000000000 -0200
++++ fcpci-3.11.07/main.c	2008-01-09 17:36:55.000000000 -0200
+@@ -22,7 +22,7 @@
+ 
+ #include <stdarg.h>
+ #include <asm/uaccess.h>
+-#include <linux/config.h>
++#include <linux/autoconf.h>
+ #include <linux/version.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>

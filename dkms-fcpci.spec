@@ -26,7 +26,8 @@ BuildRoot: %{_tmppath}/%{name}-buildroot
 BuildArch: noarch
 
 %description
-This package contains the %{module} driver for %{card}
+This package contains the %{module} driver for 
+%{card}
 
 %prep
 %setup -n fritz/src -q
@@ -72,15 +73,9 @@ PATCH[6]="dkms-fcpci-2.6.34-buildfix.patch"
 PATCH_MATCH[6]="^2\.6\.(3[4-9])|([4-9][0-9]+)|([1-9][0-9][0-9]+)"
 EOF
 
-tar c . | tar x -C $RPM_BUILD_ROOT/usr/src/%module-%version-%release/
+tar cf - . | tar x -C $RPM_BUILD_ROOT/usr/src/%module-%version-%release/
 
-for p in %{_sourcedir}/dkms-fcpci-use-autoconf-header.patch \
-         %{_sourcedir}/dkms-fcpci-use-pci_register_driver.patch \
-         %{_sourcedir}/dkms-fcpci-update-irq-flags.patch \
-         %{_sourcedir}/dkms-fcpci-update-irq_handler-definition.patch \
-         %{_sourcedir}/dkms-fcpci-2.6.31-buildfix.patch \
-         %{_sourcedir}/dkms-fcpci-2.6.33-buildfix.patch \
-         %{_sourcedir}/dkms-fcpci-2.6.34-buildfix.patch ;
+for p in %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4 %SOURCE5 %SOURCE6 %SOURCE7;
 do
 	cp $p $RPM_BUILD_ROOT/usr/src/%module-%version-%release/patches
 done
